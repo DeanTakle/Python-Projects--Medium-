@@ -1,49 +1,52 @@
 
 
-from ExpenseTracker.Expense import Expense
+from Expense import Expense
 
 
 def main():
     print(f'Welcomme to Expense Tracker')
-    get_user_expense()
+
+    expenses = get_user_expense()
+    print(expenses)
+
     save_expense_to_file()
     summarize_expenses()  # Read file and summarize expenses
 
 
 def get_user_expense():
     print(f'Getting User Expense')
-    expesne_name = input('Enter Expense Name: ')
-    # used ot convert amount into float as money is in decimal
+    expense_name = input('Enter Expense Name: ')
+    # used to convert amount into float as money is in decimal
     expense_amount = float(input('Enter Expense Amount: '))
     # used format string to print the value of variable inside the string
-    print(f"You've entered {expesne_name}, {expense_amount}")
 
     expense_category = [
         'Food',
         'Clothing',
         'Transportation',
         'Bills',
-        'Miscellaneous'
+        'Miscellaneous',
     ]
 
     while True:
         print('Select a category for your expense: ')
         # used to get a list of tuples with each index and value of expense_category
-        for i, category in enumerate(expense_category):
+        for i, category_name in enumerate(expense_category):
             # i+1 is used to start the index from 1 instead of 0
-            print(f'  {i+1}. {category}')
+            print(f'  {i + 1}. {category_name}')
 
-            # used to print the range of values the user can select
-            value_length = f' [1 - {len(expense_category)}]'
-            selected_index = int(
-                input(f'Enter a category number {value_length}: '))
-            if selected_index <= 1 and selected_index >= len(expense_category):
-                print(
-                    f'Please pick a category from 1 to {len(expense_category)}')
-            else:
-                new_expense = Expense()
-                break
-        break
+        # used to print the range of values the user can select
+        value_length = f' [1 - {len(expense_category)}]'
+        selected_index = int(
+            input(f'Enter a category number {value_length}: ')) - 1
+
+        if i in range(len(expense_category)):
+            selected_category = expense_category[selected_index]
+            new_expense = Expense(
+                name=expense_name, category=selected_category, amount=expense_amount)
+            return new_expense
+        else:
+            print('Invalid Option, Try Again')
 
 
 def save_expense_to_file():
