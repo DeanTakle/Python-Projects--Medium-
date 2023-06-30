@@ -18,9 +18,9 @@ def register():  # used to create an account for the user
     password = getpass.getpass('Password: ')  # get password from user
     if password > 10:
         print('Your password is Strong')
-    elif password < 5 and password > 10:
+    elif password >= 5 and password <= 10:
         print('Your password is Medium')
-    elif password > 1 and password < 5:
+    elif password >= 1 and password <= 5:
         print('Your Username is Weak')
     else:
         print('Your password is invalid')
