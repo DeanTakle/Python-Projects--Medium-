@@ -1,9 +1,9 @@
-Burger,Food,10.0
-Suhsi,Food,15.0
-Chips,Food,5.0
-Ice Cream,Food,1.99
-Burger, Food, 1.0
-Sushi, Food, 1.0
-o, Food, 0.0
-Burger, 7.0, Food
+Burger, 1.0, Food
+Pizza, 15.0, Food
 Sushi, 10.0, Food
+Donuts, 1.1, Food
+Chocolate, 1.0, Food
+Bed, 150.99, Miscellaneous
+Apple, 1.0, Food
+Banana, 1.0, Food
+Cheese, 1.0, Food
