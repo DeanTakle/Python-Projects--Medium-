@@ -7,8 +7,7 @@ def main():
     print(f'Welcomme to Expense Tracker')
     expense_file_path = 'expenses.csv'
     expenses = get_user_expense()
-    save_expense_to_file(expenses, expense_file_path)  # Save to file
-
+    save_expense_to_file(expenses, expense_file_path)  # Save to fileC
     summarize_expenses(expense_file_path)  # Read file and summarize expenses
 
 
