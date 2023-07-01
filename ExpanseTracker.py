@@ -5,12 +5,11 @@ from Expense import Expense
 
 def main():
     print(f'Welcomme to Expense Tracker')
-
+    expense_file_path = 'expenses.csv'
     expenses = get_user_expense()
-    print(expenses)
+    save_expense_to_file(expenses, expense_file_path)  # Save to file
 
-    save_expense_to_file()
-    summarize_expenses()  # Read file and summarize expenses
+    summarize_expenses(expense_file_path)  # Read file and summarize expenses
 
 
 def get_user_expense():
@@ -49,12 +48,29 @@ def get_user_expense():
             print('Invalid Option, Try Again')
 
 
-def save_expense_to_file():
-    print(f'Saving Expense to File')
+def save_expense_to_file(expenses: Expense, expense_file_path):
+    print(f'Saving User Expense to File: {expenses} to {expense_file_path}')
+    # used to append the file if it exists, f is the file object
+    with open(expense_file_path, 'a') as f:
+        # used to write the expense to the file. CSV means Comma Separated Values = {},{},{}\n
+        f.write(f'{expenses.name}, {expenses.amount}, {expenses.category}\n')
 
 
-def summarize_expenses():
-    print(f'Summarizing Expenses')
+def summarize_expenses(expense_file_path):
+    print(f'Summarizing Expenses of File: {expense_file_path}')
+    expenses = []
+    with open(expense_file_path, 'r') as f:
+        lines = f.readlines()
+        for line in lines:
+            expenses_name, expenses_amount, expenses_category = line.strip().split(
+                ',')  # used to split the line and strip the whitespace
+            line_expense = Expense(
+                name=expenses_name, amount=expenses_amount, category=expenses_category
+            )
+            print(line_expense)
+            # used to append the line_expense to the expenses list
+            expenses.append(line_expense)
+    print(expenses)
 
 
 if __name__ == "__main__":  # If this file is run directly, run main()
